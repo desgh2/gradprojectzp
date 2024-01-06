@@ -3,7 +3,7 @@
     <div class="sidepanel-inner d-flex flex-column">
         <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
         <div class="app-branding p-3 h-auto" style="background-color: #16232B;">
-            <a class="app-logo" href="index.html">
+            <a class="app-logo" href="{{ route('dashboard') }}">
                 <x-application-logo class="w-100" />
                 {{-- <img class="w-100" src="assets/images/logotype.svg" alt="logo"> --}}
             </a>
@@ -13,7 +13,7 @@
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link {{ request()->routeIs('person.*') ? 'active' : '' }}" href="{{ route('person.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-people" viewBox="0 0 16 16">

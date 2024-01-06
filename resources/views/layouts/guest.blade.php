@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-lg-4 offset-lg-4">
                 <a href="/" wire:navigate class="mt-5 mb-4 text-center d-block">
-                    <x-application-logo />
+                    <x-application-logo class="w-75 text-center d-block" />
                 </a>
                 @yield('content')
             </div>

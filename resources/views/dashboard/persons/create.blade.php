@@ -11,10 +11,10 @@
             role="alert">
             <div class="inner">
                 <div class="app-card-body p-3 p-lg-4">
-                    <h3 class="mb-3">Ошибка</h3>
+                    <h3 class="mb-3">Помилка</h3>
                     <div class="row gx-5 gy-3">
                         <div class="col-12 col-lg-9">
-                            <div>Заполните поля</div>
+                            <div>Зверніть увагу</div>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>

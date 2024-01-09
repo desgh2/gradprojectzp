@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\PersonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +24,18 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::view('/', 'dashboard')->name('dashboard');
     /**
+     * Категорії
+     */
+    Route::resource('category', CategoryController::class);
+    Route::post('category/{category}', [CategoryController::class, 'status'])->name('category.status');
+
+    /**
      * Керівництво
      */
     Route::resource('person', PersonController::class);
     Route::patch('status/{person}', [PersonController::class, 'status'])->name('person.status');
+    // Route::patch('category/{category}', [CategoryController::class, 'status'])->name('category.status');
+    //Route::patch('status/{person}', [CategoryController::class, 'status'])->name('person.status');
     //настройки сайта
     /* Route::resource('setting', SettingController::class);
     //категории
@@ -52,10 +61,10 @@ require __DIR__ . '/auth.php';
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); */
 
-Route::middleware('auth')->group(function () {
+/* Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+}); */
 
 

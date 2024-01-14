@@ -81,7 +81,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="text" class="form-label">Контент <span class="text-danger">*</span></label>
-                                <textarea name="text" id="text" class="form-control" placeholder="Сео текст">{{ old('text') }}</textarea>
+                                <textarea name="text" id="text" class="form-control" placeholder="Контент">{{ old('text') }}</textarea>
                             </div>
                             <button type="submit" class="mt-3 btn app-btn-primary">Зберегти</button>
                         </div>

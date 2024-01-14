@@ -15,6 +15,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/dashboard/portal.css') }}">
+    @stack('css')
     {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
 </head>
 
@@ -252,6 +253,7 @@
     <!-- Javascript -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- Page Specific JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/dashboard/app.js') }}"></script>
     @stack('scripts')
 

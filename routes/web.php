@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard\PersonController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
+use App\Http\Controllers\Dashboard\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +41,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('category', CategoryController::class);
     Route::post('category/{category}', [CategoryController::class, 'status'])->name('category.status');
-
+    /**
+     * Проєкти
+     */
+    Route::resource('project', ProjectController::class);
+    Route::post('project/{project}', [ProjectController::class, 'status'])->name('project.status');
 
 
 });

@@ -24,11 +24,11 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'min:2', 'max:255'],
-            'title'         => ['required', 'min:2', 'max:255'],
-            'slug'          => ['required', 'min:2', 'max:255'],
-            'heading'       => ['required', 'min:2', 'max:255'],
-            'description'   => ['required', 'min:2', 'max:250'],
+            'name'          => ['required', 'min:2', 'max:300'],
+            'title'         => ['required', 'min:2', 'max:300'],
+            'slug'          => ['required', 'min:2', 'max:300'],
+            'heading'       => ['required', 'min:2', 'max:300'],
+            'description'   => ['required', 'min:2', 'max:300'],
         ];
     }
 

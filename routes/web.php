@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\PersonController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProjectController;
+use App\Http\Controllers\Dashboard\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('project', ProjectController::class);
     Route::post('project/{project}', [ProjectController::class, 'status'])->name('project.status');
+    /**
+     * Відділи
+     */
+    Route::resource('department', DepartmentController::class);
+    Route::post('department/{department}', [DepartmentController::class, 'status'])->name('department.status');
 
 
 });

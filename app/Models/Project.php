@@ -41,6 +41,12 @@ class Project extends Model
         return $this->where('status', self::STATUS_DEACTIVE);
     }
 
+    //Відділ
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
     //автор проєкту
     public function user()
     {

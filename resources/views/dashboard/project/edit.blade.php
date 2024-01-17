@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Редагувати новину')
+@section('title', 'Редагувати проєкт')
 @section('content')
     <div class="row g-3 mb-4 align-items-center justify-content-between">
         <div class="col-auto">
@@ -27,7 +27,7 @@
         </div>
     @endif
     <hr class="mb-4">
-    <form action="{{ route('post.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('project.update', ['project' => $project->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row g-4 settings-section">
@@ -40,36 +40,53 @@
                     <div class="app-card-body">
                         <div class="settings-form">
                             <div class="mb-4">
+                                <label for="department_id" class="form-label">Оберіть відділ <span class="text-danger">*</span></label>
+                                <select class="form-select" name="department_id" id="department_id">
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}" @selected($department->person_id == $project->department_id)>{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-4">
                                 <label for="name" class="form-label">Назва <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name" id="name"
-                                    value="{{ old('name') ?? $post->name }}">
+                                <input type="text" class="form-control" name="name"
+                                    id="name" value="{{ old('name') ?? $project->name }}">
                             </div>
                             <div class="mb-4">
                                 <label for="slug" class="form-label">URL <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="slug" id="slug"
-                                    value="{{ old('slug') ?? $post->slug }}">
+                                <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') ?? $project->slug }}">
                             </div>
                             <div class="mb-4">
-                                <label for="title" class="form-label">Заголовок (title) <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="title" id="title"
-                                    value="{{ old('title') ?? $post->title }}">
+                                <label for="title" class="form-label">Заголовок (title) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="title" id="title" value="{{ old('title') ?? $project->title }}">
                             </div>
                             <div class="mb-4">
-                                <label for="description" class="form-label">Опис (description) <span
-                                        class="text-danger">*</span></label>
-                                <textarea name="description" id="description" class="form-control" rows="3"
-                                    style="min-height: 50px; max-height: 100px;">{{ old('description') ?? $post->description }}</textarea>
+                                <label for="description" class="form-label">Опис (description) <span class="text-danger">*</span></label>
+                                <textarea name="description" id="description" class="form-control" rows="3" style="min-height:60px; max-height: 100px;">{{ old('description') ?? $project->description }}</textarea>
                             </div>
                             <div class="mb-4">
-                                <label for="heading" class="form-label">Заголовок (H1) <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="heading" id="heading"
-                                    value="{{ old('heading') ?? $post->heading }}">
+                                <label for="heading" class="form-label">Заголовок (H1) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="heading" id="heading" value="{{ old('heading') ?? $project->heading }}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="short_text" class="form-label">Короткий опис <span class="text-danger">*</span></label>
+                                <textarea name="short_text" id="short_text" class="form-control" rows="3" style="min-height:60px; max-height: 100px;">{{ old('short_text') ?? $project->short_text }}</textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address" class="form-label">Адреса об`єкта <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="address" id="address" value="{{ old('address') ?? $project->address }}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="type" class="form-label">Тип об`єкта <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="type" id="type" value="{{ old('type') ?? $project->type }}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="do_work" class="form-label">Вид роботи на об`єкті <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="do_work" id="do_work" value="{{ old('do_work') ?? $project->do_work }}">
                             </div>
                             <div class="mb-4">
                                 <label for="text" class="form-label">Контент <span class="text-danger">*</span></label>
-                                <textarea name="text" id="text" class="form-control">{{ old('text') ?? $post->text }}</textarea>
+                                <textarea name="text" id="text" class="form-control" placeholder="Контент">{{ old('text') ?? $project->text }}</textarea>
                             </div>
                             <button type="submit" class="mt-3 btn app-btn-primary">Зберегти</button>
                         </div>
@@ -81,7 +98,7 @@
                     <div class="app-card-body">
                         <div class="settings-form">
                             <div class="form-group text-center">
-                                <img src="{{ asset("uploads/news/{$post->id}/{$post->poster}") }}"
+                                <img src="{{ asset("uploads/projects/{$project->id}/{$project->poster}") }}"
                                     class="rounded w-100 mx-auto d-block mb-3" id="imgPreview">
                                 <div class="fileUpload btn btn-success text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -102,18 +119,17 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="app-card-body">
                         <div class="settings-form">
-                            @if ($post->gallery)
+                            @if ($project->gallery)
                                 <div x-data="{
-                                    gallery: {{ $post->gallery }},
+                                    gallery: {{ $project->gallery }},
                                     rm(i) {
                                         if (i > -1) {
                                             this.gallery.splice(i, 1); // 2nd parameter means remove one item only
                                         }
-                                        alert(i)
                                     }
                                 }">
                                     <div class="row">
-                                        <template x-for="(value, index) in gallery"  :key="index">
+                                        <template x-for="(value, index) in gallery" :key="index">
                                             <div class="col-6 mb-3 position-relative">
                                                 <img x-bind:src="value" class="img-thumbnail" alt="">
                                                 <span class="d-block position-absolute top-0 end-0 bg-danger px-2 text-white"

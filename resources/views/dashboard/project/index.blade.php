@@ -26,6 +26,7 @@
                                 <tr>
                                     <th class="meta cell">#</th>
                                     <th class="meta cell">Назва</th>
+                                    <th class="meta cell">Відділ</th>
                                     <th class="meta cell">URL</th>
                                     <th class="meta cell">Статус</th>
                                     <th class="meta cell">Автор</th>
@@ -38,8 +39,8 @@
                                     <tr>
                                         <td class="cell">{{ $project->id }}</td>
                                         <td class="cell"><span class="truncate">{{ $project->name }}</span></td>
+                                        <td class="cell">{{ $project->department->name }}</td>
                                         <td class="cell">{{ $project->slug }}</td>
-                                        {{-- <td class="cell">123</td> --}}
                                         <td class="cell">
                                             <form action="{{ route('project.status', ['project' => $project->id]) }}"
                                                 method="POST">
@@ -60,7 +61,7 @@
                                         <td class="cell">
                                             <a class="btn btn-warning text-white" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-                                                data-bs-title="Редагувати новину"
+                                                data-bs-title="Редагувати проєкт"
                                                 href="{{ route('project.edit', ['project' => $project->id]) }}"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -77,8 +78,8 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger text-white"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-custom-class="custom-tooltip" data-bs-title="Видалити новину"
-                                                    onclick="return confirm('Видалити новину?');">
+                                                    data-bs-custom-class="custom-tooltip" data-bs-title="Видалити проєкт"
+                                                    onclick="return confirm('Видалити проєкт?');">
                                                     <svg width="1em" height="1em" viewBox="0 0 16 16"
                                                         class="bi bi-trash" fill="currentColor"
                                                         xmlns="http://www.w3.org/2000/svg">

@@ -47,6 +47,12 @@ class Department extends Model
         return $this->belongsTo(Person::class, 'person_id', 'id');
     }
 
+    //Проєкти відділу
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'department_id', 'id');
+    }
+
     //Автор проєкту
     public function user()
     {

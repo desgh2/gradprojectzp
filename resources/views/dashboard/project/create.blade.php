@@ -27,7 +27,7 @@
         </div>
     @endif
     <hr class="mb-4">
-    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row g-4 settings-section">
             <div class="col-12">
@@ -38,6 +38,15 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="app-card-body">
                         <div class="settings-form">
+                            <div class="mb-4">
+                                <label for="department_id" class="form-label">Оберіть відділ <span class="text-danger">*</span></label>
+                                <select class="form-select" name="department_id" id="department_id">
+                                    <option value="">Оберіть відділ</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}" @selected(old('department_id') == $department->id)>{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="mb-4">
                                 <label for="name" class="form-label">Назва <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" onkeyup="slugify('name', 'slug')" name="name"

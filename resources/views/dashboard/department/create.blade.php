@@ -39,14 +39,14 @@
                     <div class="app-card-body">
                         <div class="settings-form">
                             <div class="mb-4">
-                                    <label for="person_id" class="form-label">Оберіть керівника <span class="text-danger">*</span></label>
-                                    <select class="form-select" name="person_id" id="person_id">
-                                        <option value="">Оберіть керівника</option>
-                                        @foreach ($persons as $person)
-                                            <option value="{{ $person->id }}" @selected(old('person') == $person->id)>{{ $person->fullName() }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <label for="person_id" class="form-label">Оберіть керівника <span class="text-danger">*</span></label>
+                                <select class="form-select" name="person_id" id="person_id">
+                                    <option value="">Оберіть керівника</option>
+                                    @foreach ($persons as $person)
+                                        <option value="{{ $person->id }}" @selected(old('person') == $person->id)>{{ $person->fullName() }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="mb-4">
                                 <label for="name" class="form-label">Назва <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" onkeyup="slugify('name', 'slug')" name="name"

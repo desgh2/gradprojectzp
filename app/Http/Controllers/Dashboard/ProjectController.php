@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -16,7 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('dashboard.project.index', [
-            'projects' => Project::with('user')->paginate(10),
+            'projects' => Project::with('user', 'department')->paginate(10),
         ]);
     }
 
@@ -25,7 +26,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('dashboard.project.create');
+        return view('dashboard.project.create', [
+            'departments' => Department::all()
+        ]);
     }
 
     /**
@@ -105,6 +108,7 @@ class ProjectController extends Controller
             $project->gallery = json_encode($gallery);
         }
         return view('dashboard.project.edit', [
+            'departments' => Department::all(),
             'project' => $project
         ]);
     }
@@ -176,7 +180,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        session()->flash('alert', [
+            'title'   => 'ОК!',
+            'message' => 'Проєкт успішно видалено',
+            'class'   => 'success'
+        ]);
+        return redirect()->route('project.index');
     }
 
     /**

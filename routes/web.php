@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\DepartmentController;
+use App\Http\Controllers\Dashboard\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('department', DepartmentController::class);
     Route::post('department/{department}', [DepartmentController::class, 'status'])->name('department.status');
+    /**
+     * Налаштування
+     */
+    Route::resource('setting', SettingController::class);
 
 
 });

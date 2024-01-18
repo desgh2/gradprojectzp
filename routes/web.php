@@ -7,6 +7,8 @@ use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Livewire\Front\Contact;
+use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomePage::class)->name('front.index');
+Route::get('/contacts', Contact::class)->name('front.contact');
+
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 

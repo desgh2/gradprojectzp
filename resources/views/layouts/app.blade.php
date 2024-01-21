@@ -5,12 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <!-- SEO TOOLS -->
+    {!! SEO::generate() !!}
+    {{-- <title>@yield('title')</title> --}}
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -55,7 +53,7 @@
                     <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i class="bi bi-list"></i></button>
                     <div class="collapse navbar-collapse" id="mobileMenu">
                         <div><a class="nav-link" href="#">ПРО КП “ГРАДПРОЕКТ”</a></div>
-                        <div><a class="nav-link" href="{{ route('projects') }}">Проєкти</a></div>
+                        <div><a class="nav-link" href="{{ route('front.projects') }}">Проєкти</a></div>
                         <div><a class="nav-link" href="#">РЕКЛАМА</a></div>
                         <div><a class="nav-link" href="#">ЗЕМЛЕУСТРІЙ</a></div>
                         <div><a class="nav-link" href="#">ГЕОДЕЗІЯ</a></div>
@@ -155,7 +153,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="../js/main.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

@@ -8,6 +8,8 @@ use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Livewire\Front\Contact;
+use App\Livewire\Front\Project;
+use App\Livewire\Front\Projects;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('front.index');
 Route::get('/contacts', Contact::class)->name('front.contact');
+Route::get('/projects', Projects::class)->name('front.projects');
+Route::get('/projects/{project:slug}', Project::class)->name('front.project');
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {

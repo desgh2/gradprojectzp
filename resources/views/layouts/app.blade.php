@@ -41,7 +41,7 @@
                             <a href="#">
                                 <i class="bi bi-telephone-forward-fill"></i> <span>Зворотній зв’язок</span>
                             </a>
-                            <a data-bs-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
+                            <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
                                 <i class="bi bi-search"></i> <span>Пошук</span>
                             </a>
                         </div>
@@ -53,20 +53,14 @@
                     <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i class="bi bi-list"></i></button>
                     <div class="collapse navbar-collapse" id="mobileMenu">
                         @forelse ($primary_menu as $menu)
-                        <div><a class="nav-link" href="{{ $menu->slug }}">{{ $menu->name }}</a></div>
+                        <div><a class="nav-link" href="{{ route('front.category', ['category' => $menu->slug]) }}">{{ $menu->name }}</a></div>
                         @empty
 
                         @endforelse
-                        {{-- <div><a class="nav-link" href="#">ПРО КП “ГРАДПРОЕКТ”</a></div>
-                        <div><a class="nav-link" href="{{ route('front.projects') }}">Проєкти</a></div>
-                        <div><a class="nav-link" href="#">РЕКЛАМА</a></div>
-                        <div><a class="nav-link" href="#">ЗЕМЛЕУСТРІЙ</a></div>
-                        <div><a class="nav-link" href="#">ГЕОДЕЗІЯ</a></div>
-                        <div><a class="nav-link" href="#">Нерухоме майно</a></div> --}}
                     </div>
                 </div>
             </nav>
-            <div class="collapse bg-body-secondary" id="collapseSearch">
+            <div class="collapse bg-body-secondary" id="search">
                 <div class="container">
                     <div class="row">
                         <form action="" class="d-flex col-12 py-3">
@@ -77,7 +71,7 @@
                                 <button class="btn-search" type="button"><i class="bi bi-search"></i></button>
                             </div>
                             <div class="my-auto ms-3">
-                                <a class="btn-default" data-bs-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
+                                <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             </div>

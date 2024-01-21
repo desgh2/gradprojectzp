@@ -10,6 +10,8 @@ use App\Http\Controllers\Dashboard\SettingController;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
+use App\Livewire\Front\Category;
+use App\Livewire\Front\SubCategory;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +26,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomePage::class)->name('front.index');
-Route::get('/contacts', Contact::class)->name('front.contact');
-Route::get('/projects', Projects::class)->name('front.projects');
-Route::get('/projects/{project:slug}', Project::class)->name('front.project');
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
@@ -69,14 +67,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
 require __DIR__ . '/auth.php';
 
-/* Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); */
 
-/* Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-}); */
+Route::get('/', HomePage::class)->name('front.index');
+Route::get('/contacts', Contact::class)->name('front.contact');
+Route::get('/projects', Projects::class)->name('front.projects');
+Route::get('/projects/{project:slug}', Project::class)->name('front.project');
+Route::get('{category:slug}', Category::class)->name('front.category');
+Route::get('{parent:slug}/{category:slug}', SubCategory::class)->name('front.subcategory');
 
 

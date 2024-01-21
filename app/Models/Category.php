@@ -60,6 +60,18 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent', 'id');
     }
 
+    //дочірня категорія
+    public function subcategories()
+    {
+        return $this->hasMany(Category::class, 'parent', 'id');
+    }
+
+    //дочірня категорія
+    public function related()
+    {
+        return Category::where('parent', '=', $this->parent)->where('status', 'active')->get();
+    }
+
     //автор категорії
     public function user() {
         return $this->belongsTo(User::class, 'author', 'id');

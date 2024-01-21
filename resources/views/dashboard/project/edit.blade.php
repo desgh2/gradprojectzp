@@ -165,7 +165,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tiny.cloud/1/r05xjzvpqt372x23foc7epd3u8pazaizje6fw8s5t603fcm0/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
-     <script src="{{ asset('js/dashboard/editor.js') }}"></script>
+    <script src="{{ asset('js/dashboard/editor.js') }}"></script>
     <script src="{{ asset('js/dashboard/slugify.js') }}"></script>
     <script>
 

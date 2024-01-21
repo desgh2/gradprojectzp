@@ -30,7 +30,7 @@
     <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row g-4 settings-section">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-12">
                 <div class="section-intro">Поля позначені <span class="text-danger">*</span> - обов`язкові для заповнення
                 </div>
             </div>
@@ -87,6 +87,27 @@
                         </div>
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                    <div class="app-card-body">
+                        <div class="settings-form">
+                            <div class="mb-4 fw-bold">Відображати в меню</div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="primary_menu" id="primary_menu">
+                                <label class="form-check-label" for="primary_menu">
+                                    Головне меню
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="footer_menu" id="footer_menu">
+                                <label class="form-check-label" for="footer_menu">
+                                    Футер меню
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

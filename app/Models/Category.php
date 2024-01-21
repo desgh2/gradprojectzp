@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $table = 'category';
 
-    protected $fillable = ['parent', 'title', 'description', 'name', 'heading', 'slug', 'text', 'status', 'author'];
+    protected $fillable = ['parent', 'title', 'description', 'name', 'heading', 'slug', 'text', 'status', 'author', 'primary_menu', 'footer_menu', 'in_order'];
 
     //Статус
     const STATUS_ACTIVE = 'active';
@@ -39,6 +39,14 @@ class Category extends Model
     public function scopeIsDeactive()
     {
         return $this->where('status', self::STATUS_DEACTIVE);
+    }
+
+    //батьківські категорії
+    public static function getPrimaryMenu()
+    {
+        return self::whereNull('parent')
+            ->where('primary_menu', TRUE)
+            ->get();
     }
 
     //батьківські категорії

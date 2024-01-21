@@ -49,6 +49,8 @@ class CategoryController extends Controller
             'text' => $request->text,
             'status' => Category::STATUS_ACTIVE,
             'author' => auth()->user()->id,
+            'primary_menu' => $request->has('primary_menu'),
+            'footer_menu' => $request->has('footer_menu'),
         ]);
 
         //повідомлення
@@ -98,6 +100,8 @@ class CategoryController extends Controller
             'text' => $request->text,
             //'status' => Category::STATUS_ACTIVE,
             'author' => auth()->user()->id,
+            'primary_menu' => $request->has('primary_menu'),
+            'footer_menu' => $request->has('footer_menu'),
         ]);
 
         //повідомлення

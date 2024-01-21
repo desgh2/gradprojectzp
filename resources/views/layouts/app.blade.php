@@ -52,12 +52,17 @@
                 <div class="container">
                     <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i class="bi bi-list"></i></button>
                     <div class="collapse navbar-collapse" id="mobileMenu">
-                        <div><a class="nav-link" href="#">ПРО КП “ГРАДПРОЕКТ”</a></div>
+                        @forelse ($primary_menu as $menu)
+                        <div><a class="nav-link" href="{{ $menu->slug }}">{{ $menu->name }}</a></div>
+                        @empty
+
+                        @endforelse
+                        {{-- <div><a class="nav-link" href="#">ПРО КП “ГРАДПРОЕКТ”</a></div>
                         <div><a class="nav-link" href="{{ route('front.projects') }}">Проєкти</a></div>
                         <div><a class="nav-link" href="#">РЕКЛАМА</a></div>
                         <div><a class="nav-link" href="#">ЗЕМЛЕУСТРІЙ</a></div>
                         <div><a class="nav-link" href="#">ГЕОДЕЗІЯ</a></div>
-                        <div><a class="nav-link" href="#">Нерухоме майно</a></div>
+                        <div><a class="nav-link" href="#">Нерухоме майно</a></div> --}}
                     </div>
                 </div>
             </nav>

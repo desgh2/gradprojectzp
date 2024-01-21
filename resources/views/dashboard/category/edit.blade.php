@@ -27,11 +27,12 @@
         </div>
     @endif
     <hr class="mb-4">
-    <form action="{{ route('category.update', ['category' => $category->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category.update', ['category' => $category->id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row g-4 settings-section">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-12">
                 <div class="section-intro">Поля позначені <span class="text-danger">*</span> - обов`язкові для заповнення
                 </div>
             </div>
@@ -45,12 +46,12 @@
                                     <select class="form-select" name="parent" id="parent">
                                         {{-- <option value="">Оберіть категорію</option> --}}\
                                         @if ($category->parent)
-                                        <option value="">Оберіть категорію</option>
-                                        @foreach ($parents as $parent)
-                                            <option value="{{ $parent->id }}" @selected($parent->id  == $category->parent)>{{ $parent->name }}</option>
-                                        @endforeach
+                                            <option value="">Оберіть категорію</option>
+                                            @foreach ($parents as $parent)
+                                                <option value="{{ $parent->id }}" @selected($parent->id == $category->parent)>
+                                                    {{ $parent->name }}</option>
+                                            @endforeach
                                         @else
-
                                         @endif
                                         <option value="">Оберіть категорію</option>
                                         @foreach ($parents as $parent)
@@ -64,8 +65,8 @@
                             @endif
                             <div class="mb-4">
                                 <label for="name" class="form-label">Назва <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name"
-                                    id="name" value="{{ old('name') ?? $category->name }}" placeholder="Реклама" required="">
+                                <input type="text" class="form-control" name="name" id="name"
+                                    value="{{ old('name') ?? $category->name }}" placeholder="Реклама" required="">
                             </div>
                             <div class="mb-4">
                                 <label for="slug" class="form-label">URL <span class="text-danger">*</span></label>
@@ -99,25 +100,33 @@
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
             </div>
+            <div class="col-12 col-md-3">
+                <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                    <div class="app-card-body">
+                        <div class="settings-form">
+                            <div class="mb-4 fw-bold">Відображати в меню</div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="primary_menu" id="primary_menu" {{ $category->primary_menu ? 'checked' : '' }} >
+                                <label class="form-check-label" for="primary_menu">
+                                    Головне меню
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="footer_menu" id="footer_menu" {{ $category->footer_menu ? 'checked' : '' }} >
+                                <label class="form-check-label" for="footer_menu">
+                                    Футер меню
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 @endsection
 @push('scripts')
     <script src="https://cdn.tiny.cloud/1/r05xjzvpqt372x23foc7epd3u8pazaizje6fw8s5t603fcm0/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea#text',
-            plugins: 'advlist autolink lists link image charmap preview anchor pagebreak image imagetools table',
-            toolbar: ["styleselect fontselect fontsizeselect",
-                "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify table",
-                "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
-            ],
-            images_upload_url: 'postAcceptor.php',
-            automatic_uploads: false,
-            height: '600px',
-            language: 'ru'
-        });
-    </script>
+    <script src="{{ asset('js/dashboard/editor.js') }}"></script>
     <script src="{{ asset('js/dashboard/slugify.js') }}"></script>
 @endpush

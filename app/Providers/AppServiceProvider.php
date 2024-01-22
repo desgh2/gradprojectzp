@@ -29,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
             //Головне меню
             $primary_menu = Category::getPrimaryMenu();
 
+            $footer_menu = Category::with('subcategories')->whereNull('parent')
+                ->where('footer_menu', TRUE)
+                ->get();
+
+            //Налаштування сайта (години, адреса)
             $setting = Setting::first();
             if (!$setting) {
                 $setting = new Setting();
@@ -39,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 'primary_menu' => $primary_menu,
+                'footer_menu' => $footer_menu,
                 'setting' => $setting,
             ]);
         });

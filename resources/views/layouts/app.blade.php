@@ -24,7 +24,7 @@
 
 <body>
 
-   <div id="wrapper">
+    <div id="wrapper">
         <header>
             <div class="container top-header">
                 <div class="row">
@@ -41,7 +41,8 @@
                             <a href="{{ route('front.feedback') }}">
                                 <i class="bi bi-telephone-forward-fill"></i> <span>Зворотній зв’язок</span>
                             </a>
-                            <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
+                            <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false"
+                                aria-controls="search">
                                 <i class="bi bi-search"></i> <span>Пошук</span>
                             </a>
                         </div>
@@ -50,12 +51,15 @@
             </div>
             <nav d="primary-menu" class="primary-menu navbar navbar-expand-lg">
                 <div class="container">
-                    <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i class="bi bi-list"></i></button>
+                    <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i
+                            class="bi bi-list"></i></button>
                     <div class="collapse navbar-collapse" id="mobileMenu">
                         @forelse ($primary_menu as $menu)
-                        <div><a class="nav-link" href="{{ route('front.category', ['category' => $menu->slug]) }}">{{ $menu->name }}</a></div>
+                            <div><a class="nav-link"
+                                    href="{{ route('front.category', ['category' => $menu->slug]) }}">{{ $menu->name }}</a>
+                            </div>
                         @empty
-
                         @endforelse
                     </div>
                 </div>
@@ -71,7 +75,8 @@
                                 <button class="btn-search" type="button"><i class="bi bi-search"></i></button>
                             </div>
                             <div class="my-auto ms-3">
-                                <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
+                                <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button"
+                                    aria-expanded="false" aria-controls="search">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             </div>
@@ -103,47 +108,22 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-9">
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-6">
-                                <div class="footer-menu">
-                                    <div class="footer-menu-title">Про КП “Градпроект”</div>
-                                    <ul class="footer-menu-list">
-                                        <li><a href="#">Керівництво</a></li>
-                                        <li><a href="#">Структура</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-6">
-                                <div class="footer-menu">
-                                    <div class="footer-menu-title">Реклама</div>
-                                    <ul class="footer-menu-list">
-                                        <li><a href="#">Укладення та супровід договорів</a></li>
-                                        <li><a href="#">Розміщення зовнішньої реклами</a></li>
-                                        <li><a href="#">Демонтаж рекламних засобів </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-6">
-                                <div class="footer-menu">
-                                    <div class="footer-menu-title">Проєктування та забудова</div>
-                                    <ul class="footer-menu-list">
-                                        <li><a href="#">Проєктування</a></li>
-                                        <li><a href="#">Реконструкція та капітальний ремонт</a></li>
-                                        <li><a href="#">Паспортизація</a></li>
-                                        <li><a href="#">Обстеження і оцінка</a></li>
-                                        <li><a href="#">Супровід проєктної документації</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-6">
-                                <div class="footer-menu">
-                                    <div class="footer-menu-title">Додатково</div>
-                                    <ul class="footer-menu-list">
-                                        <li><a href="#">Розробка землевпорядної документації</a></li>
-                                        <li><a href="#">Топографо-геодезичні послуги</a></li>
-                                        <li><a href="#">Винос в натуру меж земельних ділянок</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @if ($footer_menu)
+                                @foreach ($footer_menu as $f_menu)
+                                    <div class="col-12 col-md-6 col-lg-6">
+                                        <div class="footer-menu">
+                                            <div class="footer-menu-title">{{ $f_menu->name }}</div>
+                                            @if ($f_menu->subcategories->isNotEmpty())
+                                                <ul class="footer-menu-list">
+                                                    @foreach ($f_menu->subcategories as $item)
+                                                        <li><a href="{{ route('front.subcategory', ['parent' => $f_menu->slug, 'category' => $item->slug]) }}">{{ $item->name }}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -151,7 +131,9 @@
         </footer>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 

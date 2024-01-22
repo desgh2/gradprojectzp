@@ -41,11 +41,19 @@ class Category extends Model
         return $this->where('status', self::STATUS_DEACTIVE);
     }
 
-    //батьківські категорії
+    //головне меню сайта
     public static function getPrimaryMenu()
     {
         return self::whereNull('parent')
             ->where('primary_menu', TRUE)
+            ->get();
+    }
+
+    //футер меню сайта
+    public static function getFooterMenu()
+    {
+        return self::whereNull('parent')
+            ->where('footer_menu', TRUE)
             ->get();
     }
 

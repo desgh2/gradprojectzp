@@ -12,6 +12,7 @@ use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
 use App\Livewire\Front\Category;
 use App\Livewire\Front\SubCategory;
+use App\Livewire\Front\Feedback;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
+| Here is where you can register web routes for your application. These
 |
 */
 
@@ -70,6 +71,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', HomePage::class)->name('front.index');
 Route::get('/contacts', Contact::class)->name('front.contact');
+Route::get('/feedback', Feedback::class)->name('front.feedback');
 Route::get('/projects', Projects::class)->name('front.projects');
 Route::get('/projects/{project:slug}', Project::class)->name('front.project');
 Route::get('{category:slug}', Category::class)->name('front.category');

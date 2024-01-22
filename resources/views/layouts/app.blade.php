@@ -38,7 +38,7 @@
                             <a href="{{ route('front.contact') }}">
                                 <i class="bi bi-telephone-fill"></i> <span>Контакти</span>
                             </a>
-                            <a href="#">
+                            <a href="{{ route('front.feedback') }}">
                                 <i class="bi bi-telephone-forward-fill"></i> <span>Зворотній зв’язок</span>
                             </a>
                             <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
@@ -93,17 +93,17 @@
                                 <div class="text-white">
                                     <i class="bi bi-geo-alt-fill" style="width: 50px;"></i>
                                 </div>
-                                <div class="ms-2 text-white">вул.Зелінського, 3, <br>м.Запоріжжя, 69126</div>
+                                <div class="ms-2 text-white">{!! $setting->address !!}</div>
                             </div>
                             <div class="d-flex">
                                 <div class="text-white"><i class="bi bi-clock" style="width: 50px;"></i></div>
-                                <div class="ms-2 text-white">ПН-ПТ: 8:00-17:00</div>
+                                <div class="ms-2 text-white">{{ $setting->work_time }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-9">
                         <div class="row">
-                            <div class="col-12  col-md-6 col-lg-6">
+                            <div class="col-12 col-md-6 col-lg-6">
                                 <div class="footer-menu">
                                     <div class="footer-menu-title">Про КП “Градпроект”</div>
                                     <ul class="footer-menu-list">

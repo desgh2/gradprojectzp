@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 
@@ -23,10 +24,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
-        //Головне меню
+
         View::composer('*', function ($view) {
+            //Головне меню
             $primary_menu = Category::getPrimaryMenu();
-            $view->with('primary_menu', $primary_menu);
+
+            $setting = Setting::first();
+            if (!$setting) {
+                $setting = new Setting();
+                $setting->work_time = 'ПН-ПТ: 8:00-17:00';
+                $setting->address = 'вул.Зелінського, 3, м.Запоріжжя, 69126';
+            }
+
+
+            $view->with([
+                'primary_menu' => $primary_menu,
+                'setting' => $setting,
+            ]);
         });
     }
 }

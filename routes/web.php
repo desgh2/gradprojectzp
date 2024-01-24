@@ -14,6 +14,8 @@ use App\Livewire\Front\Projects;
 use App\Livewire\Front\Category;
 use App\Livewire\Front\SubCategory;
 use App\Livewire\Front\Feedback;
+use App\Livewire\Front\News;
+use App\Livewire\Front\Post;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -84,6 +86,8 @@ Route::get('/', HomePage::class)->name('front.index');
 Route::get('/contacts', Contact::class)->name('front.contact');
 Route::get('/feedback', Feedback::class)->name('front.feedback');
 Route::get('/projects', Projects::class)->name('front.projects');
+Route::get('/news', News::class)->name('front.news');
+Route::get('/news/{post:slug}', Post::class)->name('front.post');
 Route::get('/projects/{project:slug}', Project::class)->name('front.project');
 Route::get('{category:slug}', Category::class)->name('front.category');
 Route::get('{parent:slug}/{category:slug}', SubCategory::class)->name('front.subcategory');

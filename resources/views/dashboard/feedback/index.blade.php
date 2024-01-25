@@ -17,6 +17,7 @@
                                     <th class="meta cell">#</th>
                                     <th class="meta cell">Ім`я</th>
                                     <th class="meta cell">Контакти</th>
+                                    <th class="meta cell">Текст звернення</th>
                                     <th class="meta cell">Дата звернення</th>
                                     <th class="meta cell">Статус</th>
                                     <th class="meta cell"></th>
@@ -31,6 +32,7 @@
                                             <div class="mb-1">{{ $row->phone }}</div>
                                             <div class="mb-1">{{ $row->email }}</div>
                                         </td>
+                                        <td class="cell">{{ $row->text }}</td>
                                         <td class="cell"><span class="truncate">{{ $row->created_at }}</span></td>
                                         <td class="cell">
                                             <form action="{{ route('feedback.status', ['feedback' => $row->id]) }}" method="POST">

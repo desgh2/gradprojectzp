@@ -127,6 +127,9 @@
                                 </svg>
                             </span>
                             <span class="nav-link-text">Зворотній зв`язок</span>
+                            @if (\App\Models\Feedback::accept() > 0)
+                            <span class="badge bg-success">{{ \App\Models\Feedback::accept() }}</span>
+                            @endif
                         </a>
                         <!--//nav-link-->
                     </li>

@@ -62,15 +62,15 @@
                     </div>
                 </div>
             </nav>
-            <div class="collapse bg-body-secondary" id="search">
+            <div class="collapse {{ request()->routeIs('front.search') ? 'show' : ''}} bg-body-secondary" id="search">
                 <div class="container">
                     <div class="row">
-                        <form action="" class="d-flex col-12 py-3">
+                        <form action="{{ route('front.search') }}" method="GET" class="d-flex col-12 py-3">
                             <div class="w-100 me-3">
-                                <input type="text" class="form-control input-field" placeholder="Що шукаємо?">
+                                <input type="text" name="s" class="form-control input-field" value="{{ request('s') ?? '' }}" placeholder="Що шукаємо?">
                             </div>
                             <div class="my-auto">
-                                <button class="btn-search" type="button"><i class="bi bi-search"></i></button>
+                                <button class="btn-search" type="submit"><i class="bi bi-search"></i></button>
                             </div>
                             <div class="my-auto ms-3">
                                 <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button"
@@ -127,13 +127,31 @@
                 </div>
             </div>
         </footer>
+        <a href="#" id="scrolltop">
+            <i class="bi bi-chevron-up"></i>
+        </a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script>
+        $("#scrolltop").click(function() {
+            $("html, body").animate({
+                scrollTop: 0
+            });
+            return false;
+        });
+
+        $(window).bind('scroll', function() {
+            if ($(this).scrollTop() > 200) {
+                $("#scrolltop").show();
+            } else {
+                $("#scrolltop").hide();
+            }
+        });
+    </script>
     @stack('scripts')
-    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

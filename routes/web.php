@@ -16,6 +16,7 @@ use App\Livewire\Front\SubCategory;
 use App\Livewire\Front\Feedback;
 use App\Livewire\Front\News;
 use App\Livewire\Front\Post;
+use App\Livewire\Front\Search;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -79,17 +80,28 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
 });
 
+//Авторизація
 require __DIR__ . '/auth.php';
 
-
+//Головна
 Route::get('/', HomePage::class)->name('front.index');
+//Контакти
 Route::get('/contacts', Contact::class)->name('front.contact');
+//Зворотній зв’язок
 Route::get('/feedback', Feedback::class)->name('front.feedback');
+//Проєкти
 Route::get('/projects', Projects::class)->name('front.projects');
+//Новини
 Route::get('/news', News::class)->name('front.news');
+//Пошук
+Route::get('/search', Search::class)->name('front.search');
+//Новина
 Route::get('/news/{post:slug}', Post::class)->name('front.post');
+//Проєкт
 Route::get('/projects/{project:slug}', Project::class)->name('front.project');
+//Ктегорії
 Route::get('{category:slug}', Category::class)->name('front.category');
+//Категорія
 Route::get('{parent:slug}/{category:slug}', SubCategory::class)->name('front.subcategory');
 
 

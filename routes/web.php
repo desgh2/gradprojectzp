@@ -15,6 +15,7 @@ use App\Livewire\Front\Category;
 use App\Livewire\Front\SubCategory;
 use App\Livewire\Front\Feedback;
 use App\Livewire\Front\News;
+use App\Livewire\Front\Persons;
 use App\Livewire\Front\Post;
 use App\Livewire\Front\Search;
 use App\Livewire\HomePage;

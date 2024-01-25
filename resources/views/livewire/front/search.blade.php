@@ -1,6 +1,10 @@
 <div>
     <div class="container">
+        @if ($projects->isNotEmpty() && $news->isNotEmpty())
         <h1 class="page-title">Результат пошуку</h1>
+        @else
+        <h1 class="page-title">За Вашим запитом записів не знайдено</h1>
+        @endif
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="row">
@@ -24,16 +28,6 @@
                             </div>
                         @endforeach
                     @endif
-                    {{-- @if ($persons->isNotEmpty())
-                        <div class="fw-bold fs-3 border-bottom border-1 pb-3 mb-3">Керівництво</div>
-                        @foreach ($persons as $person)
-                            <div class="searching-box">
-                                <a href="{{ route('front.news', ['post' => $c->slug]) }}"
-                                    class="searching-box-name">{{ $c->name }}</a>
-                                <p>{!! \Str::words($c->description, 10, '...') !!}</p>
-                            </div>
-                        @endforeach
-                    @endif --}}
                 </div>
             </div>
         </div>

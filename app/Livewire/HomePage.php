@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use App\Models\Setting;
+use App\Models\Department;
 use Livewire\Component;
 
 
@@ -30,7 +31,9 @@ class HomePage extends Component
     {
         SEOTools::setTitle($this->title);
         SEOTools::setDescription($this->description);
-        return view('livewire.home-page')
+        return view('livewire.home-page', [
+            'departments' => Department::isActive()->get()
+        ])
             ->extends('layouts.app')
             ->section('content');
     }

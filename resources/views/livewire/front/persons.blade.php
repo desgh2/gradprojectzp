@@ -4,7 +4,7 @@
         @forelse ($persons as $person)
             <div class="col-12 col-md-6 col-xl-4">
                 <div class="persons-box">
-                    <img src="{{ asset("uploads/photos/{$person->photo}") }} " class="mx-auto d-block rounded-circle" alt="">
+                    <img src="{{ asset("uploads/photos/{$person->photo}") }}" class="mx-auto d-block rounded-circle" alt="">
                     <a href="#" class="d-block">{{ $person->fullName() }}</a>
                     <p class="persons-post">{{ $person->post }}</p>
                     @if ($person->phone)

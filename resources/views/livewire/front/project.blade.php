@@ -9,7 +9,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="project-box">
-                    {{-- <img src="../images/project1.png" alt=""> --}}
                     <img src="{{ asset("uploads/projects/{$project->id}/{$project->poster}") }}" class="w-100 h-50" alt="">
                     <div class="project-box-title">
                         <h1>{{ $project->name }}</h1>

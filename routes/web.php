@@ -12,6 +12,7 @@ use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
 use App\Livewire\Front\Category;
+use App\Livewire\Front\Department;
 use App\Livewire\Front\SubCategory;
 use App\Livewire\Front\Feedback;
 use App\Livewire\Front\News;
@@ -96,6 +97,8 @@ Route::get('/projects', Projects::class)->name('front.projects');
 Route::get('/news', News::class)->name('front.news');
 //Пошук
 Route::get('/search', Search::class)->name('front.search');
+//відділ
+Route::get('/departments/{department:slug}', Department::class)->name('front.department');
 //Новина
 Route::get('/news/{post:slug}', Post::class)->name('front.post');
 //Проєкт

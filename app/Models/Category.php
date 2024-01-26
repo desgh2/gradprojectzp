@@ -46,6 +46,7 @@ class Category extends Model
     {
         return self::whereNull('parent')
             ->where('primary_menu', TRUE)
+            ->orderBy('in_order', 'asc')
             ->get();
     }
 

@@ -21,6 +21,7 @@
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
+
 <body>
     <div id="wrapper">
         <header>
@@ -52,22 +53,17 @@
                     <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse"
                         data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i
                             class="bi bi-list"></i></button>
-                    <div class="collapse navbar-collapse" id="mobileMenu">
-                        @forelse ($primary_menu as $menu)
-                            <div><a class="nav-link"
-                                    href="{{ route('front.category', ['category' => $menu->slug]) }}">{{ $menu->name }}</a>
-                            </div>
-                        @empty
-                        @endforelse
-                    </div>
+                    @livewire('front.primary-menu')
                 </div>
             </nav>
-            <div class="collapse {{ request()->routeIs('front.search') ? 'show' : ''}} bg-body-secondary" id="search">
+            <div class="collapse {{ request()->routeIs('front.search') ? 'show' : '' }} bg-body-secondary"
+                id="search">
                 <div class="container">
                     <div class="row">
                         <form action="{{ route('front.search') }}" method="GET" class="d-flex col-12 py-3">
                             <div class="w-100 me-3">
-                                <input type="text" name="s" class="form-control input-field" value="{{ request('s') ?? '' }}" placeholder="Що шукаємо?">
+                                <input type="text" name="s" class="form-control input-field"
+                                    value="{{ request('s') ?? '' }}" placeholder="Що шукаємо?">
                             </div>
                             <div class="my-auto">
                                 <button class="btn-search" type="submit"><i class="bi bi-search"></i></button>
@@ -96,33 +92,16 @@
                                 <div class="text-white">
                                     <i class="bi bi-geo-alt-fill" style="width: 50px;"></i>
                                 </div>
-                                <div class="ms-2 text-white">{!! $setting->address !!}</div>
+                                <div class="ms-2 text-white">{!! app('setting')->address !!}</div>
                             </div>
                             <div class="d-flex">
                                 <div class="text-white"><i class="bi bi-clock" style="width: 50px;"></i></div>
-                                <div class="ms-2 text-white">{{ $setting->work_time }}</div>
+                                <div class="ms-2 text-white">{{ app('setting')->work_time }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-9">
-                        <div class="row">
-                            @if ($footer_menu)
-                                @foreach ($footer_menu as $f_menu)
-                                    <div class="col-12 col-md-6 col-lg-6">
-                                        <div class="footer-menu">
-                                            <div class="footer-menu-title">{{ $f_menu->name }}</div>
-                                            @if ($f_menu->subcategories->isNotEmpty())
-                                                <ul class="footer-menu-list">
-                                                    @foreach ($f_menu->subcategories as $item)
-                                                        <li><a href="{{ route('front.subcategory', ['parent' => $f_menu->slug, 'category' => $item->slug]) }}">{{ $item->name }}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
+                        @livewire('front.footer-menu')
                     </div>
                 </div>
             </div>

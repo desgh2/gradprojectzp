@@ -13,7 +13,8 @@
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('person.*') ? 'active' : '' }}" href="{{ route('person.index') }}">
+                    <a class="nav-link {{ request()->routeIs('person.*') ? 'active' : '' }}"
+                        href="{{ route('person.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-people" viewBox="0 0 16 16">
@@ -28,7 +29,8 @@
                 <!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('post.*') ? 'active' : '' }}" href="{{ route('post.index') }}">
+                    <a class="nav-link {{ request()->routeIs('post.*') ? 'active' : '' }}"
+                        href="{{ route('post.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-newspaper" viewBox="0 0 16 16">
@@ -45,7 +47,8 @@
                 <!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('category.*') ? 'active' : '' }}" href="{{ route('category.index') }}">
+                    <a class="nav-link {{ request()->routeIs('category.*') ? 'active' : '' }}"
+                        href="{{ route('category.index') }}">
                         <span class="nav-icon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +68,8 @@
                 <!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('project.*') ? 'active' : '' }}" href="{{ route('project.index') }}">
+                    <a class="nav-link {{ request()->routeIs('project.*') ? 'active' : '' }}"
+                        href="{{ route('project.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-briefcase" viewBox="0 0 16 16">
@@ -80,7 +84,8 @@
                 <!--//nav-item-->
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('department.*') ? 'active' : '' }}" href="{{ route('department.index') }}">
+                    <a class="nav-link {{ request()->routeIs('department.*') ? 'active' : '' }}"
+                        href="{{ route('department.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-diagram-3" viewBox="0 0 16 16">
@@ -89,6 +94,38 @@
                             </svg>
                         </span>
                         <span class="nav-link-text">Відділи</span>
+                    </a>
+                    <!--//nav-link-->
+                </li>
+                <li class="nav-item">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <a class="nav-link {{ request()->routeIs('user.*') ? 'active' : '' }}"
+                        href="{{ route('user.index') }}">
+                        <span class="nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Користувачі</span>
+                    </a>
+                    <!--//nav-link-->
+                </li>
+                <li class="nav-item">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <a class="nav-link {{ request()->routeIs('department.*') ? 'active' : '' }}"
+                        href="{{ route('department.index') }}">
+                        <span class="nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-buildings" viewBox="0 0 16 16">
+                                <path
+                                    d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z" />
+                                <path
+                                    d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Нерухоме майно</span>
                     </a>
                     <!--//nav-link-->
                 </li>
@@ -101,7 +138,8 @@
                 <ul class="app-menu footer-menu list-unstyled">
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}">
+                        <a class="nav-link {{ request()->routeIs('setting.*') ? 'active' : '' }}"
+                            href="{{ route('setting.index') }}">
                             <span class="nav-icon">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +156,8 @@
                     <!--//nav-item-->
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link {{ request()->routeIs('feedback.*') ? 'active' : '' }}" href="{{ route('feedback.index') }}">
+                        <a class="nav-link {{ request()->routeIs('feedback.*') ? 'active' : '' }}"
+                            href="{{ route('feedback.index') }}">
                             <span class="nav-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -128,7 +167,7 @@
                             </span>
                             <span class="nav-link-text">Зворотній зв`язок</span>
                             @if (\App\Models\Feedback::accept() > 0)
-                            <span class="badge bg-success">{{ \App\Models\Feedback::accept() }}</span>
+                                <span class="badge bg-success">{{ \App\Models\Feedback::accept() }}</span>
                             @endif
                         </a>
                         <!--//nav-link-->

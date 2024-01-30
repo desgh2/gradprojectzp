@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\FeedbackController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
@@ -68,6 +69,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('department', DepartmentController::class);
     Route::post('department/{department}', [DepartmentController::class, 'status'])->name('department.status');
+
+    /**
+     * Користувачі
+     */
+    Route::resource('user', UserController::class);
 
     /**
      * Налаштування

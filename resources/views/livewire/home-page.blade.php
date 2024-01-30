@@ -30,6 +30,9 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="text-center">
+                        <a class="text-secondary text-decoration-underline fs-5" href="{{ route('front.news') }}">Переглянути всі новини</a>
+                    </div>
                 </div>
             </div>
         </div>

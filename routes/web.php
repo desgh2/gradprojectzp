@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard\DepartmentController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\FeedbackController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\RealEstateController;
+use App\Http\Controllers\Dashboard\FileUploadController;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
@@ -38,7 +40,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
+
     Route::view('/', 'dashboard')->name('dashboard');
+
+    Route::post('upload/files', [FileUploadController::class, 'upload'])->name('fileupload');
 
     /**
      * Керівництво
@@ -74,6 +79,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      * Користувачі
      */
     Route::resource('user', UserController::class);
+
+    /**
+     * Нерухоме майно
+     */
+    Route::resource('estate', RealEstateController::class);
+    Route::post('status/{real_estate}', [RealEstateController::class, 'status'])->name('estate.status');
 
     /**
      * Налаштування

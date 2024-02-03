@@ -114,8 +114,8 @@
                 </li>
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ request()->routeIs('department.*') ? 'active' : '' }}"
-                        href="{{ route('department.index') }}">
+                    <a class="nav-link {{ request()->routeIs('estate.*') ? 'active' : '' }}"
+                        href="{{ route('estate.index') }}">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-buildings" viewBox="0 0 16 16">

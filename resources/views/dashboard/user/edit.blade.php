@@ -33,7 +33,6 @@
     }">
     @method('PATCH')
         @csrf
-
         <div class="row g-4 settings-section">
             <div class="col-12 col-md-4">
                 <div class="section-intro">Поля позначені <span class="text-danger">*</span> - обов`язкові для заповнення

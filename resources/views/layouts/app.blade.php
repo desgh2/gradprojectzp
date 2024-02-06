@@ -10,16 +10,8 @@
     <!-- Fonts -->
     @stack('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/xs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sm.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/md.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lg.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/xl.css') }}">
-    <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
 </head>
 
 <body>

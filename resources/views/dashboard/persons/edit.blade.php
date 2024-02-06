@@ -32,12 +32,11 @@
         @csrf
         @method('PATCH')
         <div class="row g-4 settings-section">
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="section-intro">Поля позначені <span class="text-danger">*</span> - обов`язкові для заповнення
                 </div>
-                <img src="{{ asset('uploads/photos/' . $person->photo) }}" class="img-thumbnail mt-5" alt="...">
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-9">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="app-card-body">
                         <div class="settings-form">
@@ -80,6 +79,44 @@
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
             </div>
+            <div class="col-12 col-md-3">
+                <div class="app-card app-card-settings shadow-sm p-4 mb-4">
+                    <div class="app-card-body">
+                        <div class="settings-form">
+                            <div class="form-group text-center">
+                                <img src='{{ asset("uploads/photos/{$person->photo}") }}' class="rounded w-100 mx-auto d-block mb-3" id="imgPreview">
+                                <div class="fileUpload btn btn-success text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                        <path
+                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                        <path
+                                            d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+                                    </svg>
+                                    <input type="file" name="photo" class="form-control upload" id="imgInput"
+                                        accept="image/*" />
+                                    <span class="ms-2">Завантажити фото</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 @endsection
+@push('scripts')
+    <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('js/dashboard/uploads.js') }}"></script>
+    <script>
+        CKEDITOR.replace('text', {
+            filebrowserUploadMethod: 'form',
+            font_defaultLabel: 'Roboto',
+            filebrowserUploadUrl: "{{ route('fileupload', ['_token' => csrf_token()]) }}",
+            height: '450px',
+        });
+    </script>
+@endpush
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/upload.css') }}">
+@endpush

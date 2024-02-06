@@ -197,8 +197,6 @@ class RealEstateController extends Controller
      */
     public function status(RealEstate $real_estate)
     {
-       // dd($real_estate);
-
         $real_estate->update([
             'status' => ($real_estate->status == RealEstate::STATUS_ACTIVE) ? RealEstate::STATUS_DEACTIVE : RealEstate::STATUS_ACTIVE,
         ]);

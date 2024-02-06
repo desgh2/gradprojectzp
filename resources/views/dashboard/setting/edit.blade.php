@@ -84,20 +84,13 @@
     </form>
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/r05xjzvpqt372x23foc7epd3u8pazaizje6fw8s5t603fcm0/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
     <script>
-        tinymce.init({
-            selector: 'textarea#text',
-            plugins: 'advlist autolink lists link image charmap preview anchor pagebreak image imagetools table',
-            toolbar: ["styleselect fontselect fontsizeselect",
-                "undo redo | cut copy paste | bold italic | link image | alignleft aligncenter alignright alignjustify table",
-                "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code"
-            ],
-            images_upload_url: 'postAcceptor.php',
-            automatic_uploads: false,
-            height: '600px',
-            language: 'ru'
+        CKEDITOR.replace('text', {
+            filebrowserUploadMethod: 'form',
+            font_defaultLabel: 'Roboto',
+            filebrowserUploadUrl: "{{ route('fileupload', ['_token' => csrf_token()]) }}",
+            height: '450px',
         });
     </script>
 @endpush

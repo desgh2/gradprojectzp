@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\FileUploadController;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
+use App\Livewire\Front\RealEstate;
 use App\Livewire\Front\Category;
 use App\Livewire\Front\Department;
 use App\Livewire\Front\SubCategory;
@@ -21,6 +22,7 @@ use App\Livewire\Front\Feedback;
 use App\Livewire\Front\News;
 use App\Livewire\Front\Persons;
 use App\Livewire\Front\Post;
+use App\Livewire\Front\RealEstateShow;
 use App\Livewire\Front\Search;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
@@ -110,12 +112,16 @@ Route::get('/contacts', Contact::class)->name('front.contact');
 Route::get('/feedback', Feedback::class)->name('front.feedback');
 //Проєкти
 Route::get('/projects', Projects::class)->name('front.projects');
+//Нерухоме майно
+Route::get('/real-estate', RealEstate::class)->name('front.realestate');
 //Новини
 Route::get('/news', News::class)->name('front.news');
 //Пошук
 Route::get('/search', Search::class)->name('front.search');
 //відділ
 Route::get('/departments/{department:slug}', Department::class)->name('front.department');
+//Нерухоме майно
+Route::get('/real-estate/{estate:slug}', RealEstateShow::class)->name('front.realestate.show');
 //Новина
 Route::get('/news/{post:slug}', Post::class)->name('front.post');
 //Проєкт

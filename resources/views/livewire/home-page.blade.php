@@ -80,29 +80,7 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
-    <script>
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            center: true,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                576: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                992: {
-                    items: 3,
-                }
-            },
-            navText: ["<i class='bi bi-chevron-left'></i>", "<i class='bi bi-chevron-right'></i>"]
-        })
-    </script>
+    <script src="{{ asset('js/owl-home.js') }}"></script>
 @endpush
 @push('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"

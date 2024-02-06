@@ -124,7 +124,6 @@
                                             </div>
                                         </template>
                                         <input type="hidden" name="old_gallery" x-model="gallery">
-                                        {{-- <textarea name="old_gallery" id="" class="form-control"></textarea> --}}
                                     </div>
                                 </div>
                             @endif
@@ -146,12 +145,14 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 @endsection
 @push('scripts')
     <script src="//unpkg.com/alpinejs" defer></script>
-        <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
-        <script>
+    <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('js/dashboard/uploads.js') }}"></script>
+    <script>
         CKEDITOR.replace('text', {
             filebrowserUploadMethod: 'form',
             font_defaultLabel: 'Roboto',
@@ -159,128 +160,7 @@
             height: '450px',
         });
     </script>
-    <script>
-
-        $("#imgInput").change(function() {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imgPreview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-
-        $("#gallery_upload").on('change', function() {
-            $("#gallery").empty(); //you can remove this code if you want previous user input
-            for (let i = 0; i < this.files.length; ++i) {
-                let filereader = new FileReader();
-                let $img = jQuery.parseHTML("<img src='' class='gal-image img-thumbnail'>");
-                filereader.onload = function() {
-                    $img[0].src = this.result;
-                };
-                filereader.readAsDataURL(this.files[i]);
-                $("#gallery").append($img);
-            }
-            $( ".gal-image" ).wrap( "<div class='col-6 mb-3'></div>" );
-        });
-    </script>
 @endpush
 @push('css')
-    <style>
-        .fileUpload {
-            position: relative;
-        }
-
-        .fileUpload input.upload {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        input[type="file"] {
-            position: fixed;
-            right: 100%;
-            bottom: 100%;
-        }
-
-        #preview img {
-            max-height: 100px;
-        }
-
-        .avatar-upload {
-            position: relative;
-            max-width: 205px;
-            margin: 50px auto;
-
-            .avatar-edit {
-                position: absolute;
-                right: 12px;
-                z-index: 1;
-                top: 10px;
-
-                input {
-                    display: none;
-
-                    +label {
-                        display: inline-block;
-                        width: 34px;
-                        height: 34px;
-                        margin-bottom: 0;
-                        border-radius: 100%;
-                        background: #FFFFFF;
-                        border: 1px solid transparent;
-                        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-                        cursor: pointer;
-                        font-weight: normal;
-                        transition: all .2s ease-in-out;
-
-                        &:hover {
-                            background: #f1f1f1;
-                            border-color: #d6d6d6;
-                        }
-
-                        &:after {
-                            content: "\f040";
-                            font-family: 'FontAwesome';
-                            color: #757575;
-                            position: absolute;
-                            top: 10px;
-                            left: 0;
-                            right: 0;
-                            text-align: center;
-                            margin: auto;
-                        }
-                    }
-                }
-            }
-
-            .avatar-preview {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-radius: 5px;
-                border: 6px solid #F8F8F8;
-                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-
-                >div {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/upload.css') }}">
 @endpush

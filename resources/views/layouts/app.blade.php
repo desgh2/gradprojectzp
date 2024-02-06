@@ -106,30 +106,13 @@
                 </div>
             </div>
         </footer>
-        <a href="#" id="scrolltop">
-            <i class="bi bi-chevron-up"></i>
-        </a>
+        <a href="#" id="scrolltop"><i class="bi bi-chevron-up"></i></a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script>
-        $("#scrolltop").click(function() {
-            $("html, body").animate({
-                scrollTop: 0
-            });
-            return false;
-        });
-
-        $(window).bind('scroll', function() {
-            if ($(this).scrollTop() > 200) {
-                $("#scrolltop").show();
-            } else {
-                $("#scrolltop").hide();
-            }
-        });
-    </script>
+    <script src="{{ asset('js/main.js') }}"></script>
     @stack('scripts')
 </body>
 

@@ -11,7 +11,6 @@ class Category extends Component
 
     public CategoryModel $category;
 
-
     public function render()
     {
         SEOTools::setTitle($this->category->title);

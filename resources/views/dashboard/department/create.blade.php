@@ -124,110 +124,22 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/r05xjzvpqt372x23foc7epd3u8pazaizje6fw8s5t603fcm0/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-    <script src="{{ asset('js/dashboard/editor.js') }}"></script>
+    <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/dashboard/slugify.js') }}"></script>
     <script src="{{ asset('js/dashboard/uploads.js') }}"></script>
+    <script>
+        CKEDITOR.replace('text', {
+            filebrowserUploadMethod: 'form',
+            font_defaultLabel: 'Roboto',
+            filebrowserUploadUrl: "{{ route('fileupload', ['_token' => csrf_token()]) }}",
+            height: '450px',
+        });
+    </script>
 @endpush
 @push('css')
-    <style>
-        .fileUpload {
-            position: relative;
-        }
-
-        .fileUpload input.upload {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        input[type="file"] {
-            position: fixed;
-            right: 100%;
-            bottom: 100%;
-        }
-
-        #preview img {
-            max-height: 100px;
-        }
-
-        .avatar-upload {
-            position: relative;
-            max-width: 205px;
-            margin: 50px auto;
-
-            .avatar-edit {
-                position: absolute;
-                right: 12px;
-                z-index: 1;
-                top: 10px;
-
-                input {
-                    display: none;
-
-                    +label {
-                        display: inline-block;
-                        width: 34px;
-                        height: 34px;
-                        margin-bottom: 0;
-                        border-radius: 100%;
-                        background: #FFFFFF;
-                        border: 1px solid transparent;
-                        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-                        cursor: pointer;
-                        font-weight: normal;
-                        transition: all .2s ease-in-out;
-
-                        &:hover {
-                            background: #f1f1f1;
-                            border-color: #d6d6d6;
-                        }
-
-                        &:after {
-                            content: "\f040";
-                            font-family: 'FontAwesome';
-                            color: #757575;
-                            position: absolute;
-                            top: 10px;
-                            left: 0;
-                            right: 0;
-                            text-align: center;
-                            margin: auto;
-                        }
-                    }
-                }
-            }
-
-            .avatar-preview {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-radius: 5px;
-                border: 6px solid #F8F8F8;
-                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-
-                >div {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/upload.css') }}">
 @endpush

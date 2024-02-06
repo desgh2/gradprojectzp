@@ -43,9 +43,6 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="uploads">
-                            {{-- <label for="files" class="">
-                                <i class="bi bi-paperclip"></i> Прикріпити файл
-                            </label> --}}
                             <input type="file" id="uploadFile{{ $files_count }}" class="input-file" wire:model="files" multiple>
                         </div>
                     </div>

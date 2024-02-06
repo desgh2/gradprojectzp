@@ -14,7 +14,6 @@ class Feedback extends Component
 
     public $title = 'Зворотній зв’язок';
     public $description = 'Зворотній зв’язок';
-
     public $name, $phone, $email, $text;
     public $files = []; //файли
     public $files_count = 1; //кількість файлів

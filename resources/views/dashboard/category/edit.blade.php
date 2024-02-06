@@ -125,8 +125,13 @@
     </form>
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/r05xjzvpqt372x23foc7epd3u8pazaizje6fw8s5t603fcm0/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-    <script src="{{ asset('js/dashboard/editor.js') }}"></script>
-    <script src="{{ asset('js/dashboard/slugify.js') }}"></script>
+    <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script>
+        CKEDITOR.replace('text', {
+            filebrowserUploadMethod: 'form',
+            font_defaultLabel: 'Roboto',
+            filebrowserUploadUrl: "{{ route('fileupload', ['_token' => csrf_token()]) }}",
+            height: '450px',
+        });
+    </script>
 @endpush

@@ -12,8 +12,7 @@
                         <div class="fw-bold fs-3 border-bottom border-1 pb-3 mb-3">Проєкти</div>
                         @foreach ($projects as $p)
                             <div class="searching-box">
-                                <a href="{{ route('front.project', ['project' => $p->slug]) }}"
-                                    class="searching-box-name">{{ $p->name }}</a>
+                                <a href="{{ route('front.project', ['project' => $p->slug]) }}" class="searching-box-name">{{ $p->name }}</a>
                                 <p>{!! \Str::words($p->description, 10, '...') !!}</p>
                             </div>
                         @endforeach
@@ -22,8 +21,7 @@
                         <div class="fw-bold fs-3 border-bottom border-1 pb-3 mb-3">Новини</div>
                         @foreach ($news as $n)
                             <div class="searching-box">
-                                <a href="{{ route('front.post', ['post' => $n->slug]) }}"
-                                    class="searching-box-name">{{ $n->name }}</a>
+                                <a href="{{ route('front.post', ['post' => $n->slug]) }}" class="searching-box-name">{{ $n->name }}</a>
                                 <p>{!! \Str::words($n->description, 10, '...') !!}</p>
                             </div>
                         @endforeach

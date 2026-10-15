@@ -17,7 +17,8 @@ class DepartmentController extends Controller
     public function index()
     {
         return view('dashboard.department.index', [
-            'departments' => Department::with('user')->paginate(10),
+        'departments' => Department::paginate(10),
+            // 'departments' => Department::with('user')->paginate(10),
         ]);
     }
 

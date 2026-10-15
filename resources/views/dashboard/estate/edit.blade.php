@@ -27,7 +27,7 @@
         </div>
     @endif
     <hr class="mb-4">
-    <form action="{{ route('estate.update', ['estate' => $estate->id ]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('estate.update', ['estate' => $estate->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row g-4 settings-section">
@@ -52,28 +52,44 @@
                             </div>
                             <div class="mb-4">
                                 <label for="name" class="form-label">Назва <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name"
-                                    id="name" value="{{ old('name') ?? $estate->name }}">
+                                <input type="text" class="form-control" name="name" id="name"
+                                    value="{{ old('name') ?? $estate->name }}">
                             </div>
                             <div class="mb-4">
                                 <label for="slug" class="form-label">URL <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') ?? $estate->slug }}">
+                                <input type="text" class="form-control" name="slug" id="slug"
+                                    value="{{ old('slug') ?? $estate->slug }}">
                             </div>
                             <div class="mb-4">
-                                <label for="title" class="form-label">Заголовок (title) <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="title" id="title" value="{{ old('title') ?? $estate->title }}">
-                            </div>
-                            <div class="mb-4">
-                                <label for="description" class="form-label">Опис (description) <span class="text-danger">*</span></label>
-                                <textarea name="description" id="description" class="form-control" rows="3" style="min-height:60px; max-height: 100px;">{{ old('description') ?? $estate->description }}</textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="heading" class="form-label">Заголовок (H1) <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="heading" id="heading" value="{{ old('heading') ?? $estate->heading }}">
+                                <label for="pasport" class="form-label">Завантажити технічний паспорт</label>
+                                <input class="form-control" type="file" name="pasport" id="pasport">
+                                <input type="hidden" name="old_pasport" value="{{ $estate->pasport }}">
+                                @if (file_exists(public_path() . '/uploads/estate/' . $estate->id . '/pasport/' . $estate->pasport))
+                                    <div class="mt-2"><a
+                                            href="{{ asset("uploads/estate/{$estate->id}/pasport/{$estate->pasport}") }}"
+                                            target="_blank" class="fw-bolder"><span class="">Технічний паспорт</span>
+                                        </a></div>
+                                @endif
                             </div>
                             <div class="mb-4">
                                 <label for="text" class="form-label">Контент <span class="text-danger">*</span></label>
                                 <textarea name="text" id="text" class="form-control" placeholder="Контент">{{ old('text') ?? $estate->text }}</textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="map" class="form-label">Карта <span class="text-danger">*</span></label>
+                                <div id="map" style="width: 100%; height: 500px"></div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="lat" class="form-label">Широта (Lat) <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="lat" id="lat"
+                                    value="{{ old('lat') ?? $estate->lat }}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="lon" class="form-label">Долгота (Lng / Lon) <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="lon" id="lon"
+                                    value="{{ old('lon') ?? $estate->lon }}">
                             </div>
                             <button type="submit" class="mt-3 btn app-btn-primary">Зберегти</button>
                         </div>
@@ -119,7 +135,8 @@
                                         <template x-for="(value, index) in gallery" :key="index">
                                             <div class="col-6 mb-3 position-relative">
                                                 <img x-bind:src="value" class="img-thumbnail" alt="">
-                                                <span class="d-block position-absolute top-0 end-0 bg-danger px-2 text-white"
+                                                <span
+                                                    class="d-block position-absolute top-0 end-0 bg-danger px-2 text-white"
                                                     @click="rm(index)">x</span>
                                             </div>
                                         </template>
@@ -152,6 +169,8 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="{{ asset('/js/dashboard/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/dashboard/uploads.js') }}"></script>
+    <script src="{{ asset('js/leaflet.js') }}"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>
         CKEDITOR.replace('text', {
             filebrowserUploadMethod: 'form',
@@ -160,7 +179,76 @@
             height: '450px',
         });
     </script>
+    <script>
+        var lc = [{{ $estate->lat }}, {{ $estate->lon }}];
+
+        //map initialization
+        var map = L.map('map').setView([lc[0], lc[1]], 12);
+
+        mapLink =
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; ' + mapLink + ' Contributors',
+                maxZoom: 18,
+            }).addTo(map);
+
+        markerLayer = L.layerGroup().addTo(map);
+        marker = new L.marker([lc[0], lc[1]], {
+
+            clickable: true
+        }).bindPopup("Hello Marker").addTo(markerLayer);
+
+
+
+        /* marker = new L.marker([lc[0], lc[1]])
+            .bindPopup(lc[0])
+            .addTo(map); */
+
+        var _geocoderType = L.Control.Geocoder.nominatim();
+        var geocoder = L.Control.geocoder({
+            geocoder: _geocoderType
+        }).addTo(map);
+        geocoder.on('markgeocode', function(event) {
+            var center = event.geocode.center;
+            L.marker(center).addTo(map);
+            map.setView(center, map.getZoom());
+        });
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            var coords = e.latlng;
+
+            if (marker) {
+                markerLayer.removeLayer(marker);
+                markerLayer = L.layerGroup().addTo(map);
+                marker = new L.marker(e.latlng, {
+
+                    clickable: true
+                }).bindPopup("Hello Marker").addTo(markerLayer);
+            } else {
+                alert('nt');
+            }
+
+            document.getElementById('lat').value = coords.lat;
+            document.getElementById('lon').value = coords.lng;
+            popup
+                .setLatLng(e.latlng)
+                .setContent('Широта: ' + coords.lat + ' | ' + 'Долгота: ' + coords.lng)
+                .openOn(map);
+        }
+        map.on('click', onMapClick);
+    </script>
 @endpush
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/upload.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <style>
+        #map {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
 @endpush

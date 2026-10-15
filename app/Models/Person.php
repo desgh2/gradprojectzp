@@ -11,7 +11,7 @@ class Person extends Model
 
     protected $table = 'persons';
 
-    protected $fillable = ['name', 'surname', 'byfather', 'post', 'photo', 'phone', 'office_number', 'address', 'status', 'author'];
+    protected $fillable = ['name', 'surname', 'byfather', 'post', 'photo', 'phone', 'office_number', 'address', 'status', 'author', 'in_order'];
 
     //Статус
     const STATUS_ACTIVE = 'active';

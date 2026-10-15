@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'КП "Градпроєкт" - Головна сторінка')
+@section('title', 'КП "Градпроект" - Головна сторінка')
 @section('content')
     <div class="row g-3 mb-4 align-items-center justify-content-between">
         <div class="col-auto">

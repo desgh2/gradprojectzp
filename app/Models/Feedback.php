@@ -37,7 +37,6 @@ class Feedback extends Model
 
     public static function accept()
     {
-        return self::where('status', self::STATUS_ACCEPT)->count();
+        return self::where('status', self::STATUS_WORK)->count();
     }
-
 }

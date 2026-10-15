@@ -7,6 +7,8 @@ use App\Models\RealEstate;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEstateRequest;
 use App\Http\Requests\UpdateEstateRequest;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class RealEstateController extends Controller
 {
@@ -25,6 +27,15 @@ class RealEstateController extends Controller
             $d->where('district_id', request('district'));
         });
 
+        $query->when(request('pasport'), function ($p) {
+            $p->whereNull('pasport');
+        });
+
+        $query->when(request('poster'), function ($p) {
+            $p->whereNull('poster');
+        });
+
+        $rows = $query->latest();
         $rows = $query->paginate(15);
         $links = $rows->appends(['search' => request('search'), 'district' => request('district')])->links();
 
@@ -55,15 +66,26 @@ class RealEstateController extends Controller
         //створення запису
         $real_estate = RealEstate::create([
             'district_id' => $request->district_id,
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' =>  'Вільне приміщення за адресою ' . $request->name,
+            'description' => 'Орендувати приміщення за адресою ' . $request->name,
             'name' => $request->name,
-            'heading' => $request->heading,
+            'heading' => $request->name,
             'slug' => $request->slug,
             'text' => $request->text,
+            'lat' => $request->lat,
+            'lon' => $request->lon,
             'status' => RealEstate::STATUS_ACTIVE,
             'author' => auth()->user()->id,
         ]);
+
+        //завантаження технічного паспорта
+        if ($request->hasFile('pasport')) {
+            $file     = $request->file('pasport');
+            $pasport = strtolower($file->getClientOriginalName());
+            $file->move(public_path('uploads/estate/' . $real_estate->id. '/pasport'), $pasport);
+
+            $real_estate->update(['pasport' => $pasport]);
+        }
 
         //завантаження фото
         if ($request->hasFile('poster')) {
@@ -107,6 +129,7 @@ class RealEstateController extends Controller
      */
     public function edit(RealEstate $estate)
     {
+        // dd($estate);
         //якщо є галерея
         if ($estate->gallery) {
             $gallery = [];
@@ -133,15 +156,26 @@ class RealEstateController extends Controller
         //створення запису
         $estate->update([
             'district_id' => $request->district_id,
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' =>  'Вільне приміщення за адресою ' . $request->name,
+            'description' => 'Орендувати приміщення за адресою ' . $request->name,
             'name' => $request->name,
-            'heading' => $request->heading,
+            //'heading' => $request->heading,
             'slug' => $request->slug,
             'text' => $request->text,
+            'lat' => $request->lat,
+            'lon' => $request->lon,
             'status' => RealEstate::STATUS_ACTIVE,
             'author' => auth()->user()->id,
         ]);
+
+        //завантаження технічного паспорта
+        if ($request->hasFile('pasport')) {
+            $file     = $request->file('pasport');
+            $pasport = strtolower($file->getClientOriginalName());
+            $file->move(public_path('uploads/estate/' . $estate->id . '/pasport'), $pasport);
+
+            $estate->update(['pasport' => $pasport]);
+        }
 
         //завантаження фото
         if ($request->hasFile('poster')) {
@@ -184,9 +218,19 @@ class RealEstateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RealEstate $real_estate)
+    public function destroy(RealEstate $estate)
     {
-        //
+
+        File::deleteDirectory(public_path('uploads/estate/' . $estate->id));
+
+        $estate->delete();
+
+        session()->flash('alert', [
+            'title'   => 'ОК!',
+            'message' => 'Запис успішно видалено',
+            'class'   => 'success'
+        ]);
+        return redirect()->route('estate.index');
     }
 
     /**

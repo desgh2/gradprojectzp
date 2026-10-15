@@ -25,7 +25,7 @@ class CreateDepartmentRequest extends FormRequest
     {
         return [
             'name'          => ['required', 'min:2', 'max:300'],
-            'person_id'     => ['required'],
+            //'person_id'     => ['required'],
             'slug'          => ['required', 'min:2', 'max:300', 'unique:department'],
             'heading'       => ['required', 'min:2', 'max:300'],
             'description'   => ['required', 'min:2', 'max:300'],

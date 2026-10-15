@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'КП "Градпроєкт" - Головна сторінка')</title>
+    <title>@yield('title', 'КП "Градпроект" - Головна сторінка')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,7 @@
                         </div>
 
                         <div class="app-utilities col-auto">
+                            <a href="{{ route('front.index') }}" target="_blank" class="btn btn-sm btn-warning text-white">на сайт</a>
                             <!--//app-utility-item-->
                             <div class="app-utility-item app-user-dropdown dropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"

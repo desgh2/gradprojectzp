@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +10,29 @@
     @stack('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    @livewireStyles
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
-</head>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-STCQF3W1VD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-STCQF3W1VD');
+    </script>
+    <style>
+        .primary-menu a {
+            font-size: 16px;
+        }
+    </style>
+</head>
 <body>
     <div id="wrapper">
         <header>
@@ -32,37 +51,31 @@
                             <a href="{{ route('front.feedback') }}">
                                 <i class="bi bi-telephone-forward-fill"></i> <span>Зворотній зв’язок</span>
                             </a>
-                            <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false"
-                                aria-controls="search">
+                            <a data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
                                 <i class="bi bi-search"></i> <span>Пошук</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <nav d="primary-menu" class="primary-menu navbar navbar-expand-lg">
+            <nav class="primary-menu navbar navbar-expand-xl">
                 <div class="container">
-                    <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i
-                            class="bi bi-list"></i></button>
+                    <button class="mobile-toggler-menu navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"><i class="bi bi-list"></i></button>
                     @livewire('front.primary-menu')
                 </div>
             </nav>
-            <div class="collapse {{ request()->routeIs('front.search') ? 'show' : '' }} bg-body-secondary"
-                id="search">
+            <div class="collapse {{ request()->routeIs('front.search') ? 'show' : '' }} bg-body-secondary" id="search">
                 <div class="container">
                     <div class="row">
                         <form action="{{ route('front.search') }}" method="GET" class="d-flex col-12 py-3">
                             <div class="w-100 me-3">
-                                <input type="text" name="s" class="form-control input-field"
-                                    value="{{ request('s') ?? '' }}" placeholder="Що шукаємо?">
+                                <input type="text" name="s" class="form-control input-field" value="{{ request('s') ?? '' }}" placeholder="Що шукаємо?">
                             </div>
                             <div class="my-auto">
                                 <button class="btn-search" type="submit"><i class="bi bi-search"></i></button>
                             </div>
                             <div class="my-auto ms-3">
-                                <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button"
-                                    aria-expanded="false" aria-controls="search">
+                                <a class="btn-default" data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             </div>
@@ -101,11 +114,11 @@
         <a href="#" id="scrolltop"><i class="bi bi-chevron-up"></i></a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('js/main.js') }}"></script>
     @stack('scripts')
-</body>
+    <script src="{{ asset('js/main.js') }}"></script>
+    @livewireScripts
 
+</body>
 </html>

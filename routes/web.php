@@ -10,11 +10,14 @@ use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\FeedbackController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\RealEstateController;
+use App\Http\Controllers\Dashboard\EstateOrderController;
+use App\Http\Controllers\Dashboard\AdvertController;
 use App\Http\Controllers\Dashboard\FileUploadController;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Project;
 use App\Livewire\Front\Projects;
 use App\Livewire\Front\RealEstate;
+use App\Livewire\Front\Advert;
 use App\Livewire\Front\Category;
 use App\Livewire\Front\Department;
 use App\Livewire\Front\SubCategory;
@@ -23,6 +26,7 @@ use App\Livewire\Front\News;
 use App\Livewire\Front\Persons;
 use App\Livewire\Front\Post;
 use App\Livewire\Front\RealEstateShow;
+use App\Livewire\Front\AdvertShow;
 use App\Livewire\Front\Search;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +79,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      * Відділи
      */
     Route::resource('department', DepartmentController::class);
+    //dd('asd');
     Route::post('department/{department}', [DepartmentController::class, 'status'])->name('department.status');
 
     /**
@@ -87,6 +92,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('estate', RealEstateController::class);
     Route::post('status/{real_estate}', [RealEstateController::class, 'status'])->name('estate.status');
+    //Заявки на нерухомість
+    Route::resource('order', EstateOrderController::class);
+    Route::post('order/{order}', [EstateOrderController::class, 'status'])->name('order.status');
+    /**
+     * Рекламні оголошення
+     */
+    Route::resource('advert', AdvertController::class);
+    Route::post('advert/{advert}', [AdvertController::class, 'status'])->name('advert.status');
 
     /**
      * Налаштування
@@ -98,14 +111,20 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
      */
     Route::resource('feedback', FeedbackController::class);
     Route::post('feedback/{feedback}', [FeedbackController::class, 'status'])->name('feedback.status');
-
 });
 
 //Авторизація
 require __DIR__ . '/auth.php';
 
 //Головна
+// Route::view('/', 'gg');
 Route::get('/', HomePage::class)->name('front.index');
+//карта сайта html
+Route::view('sitemap.html', 'sitemap.sitemap_html');
+//карта сайта index
+Route::get('sitemap.xml', function () {
+    return response()->view('sitemap.sitemap')->header('Content-type', 'text/xml');
+});
 //Контакти
 Route::get('/contacts', Contact::class)->name('front.contact');
 //Зворотній зв’язок
@@ -114,6 +133,8 @@ Route::get('/feedback', Feedback::class)->name('front.feedback');
 Route::get('/projects', Projects::class)->name('front.projects');
 //Нерухоме майно
 Route::get('/real-estate', RealEstate::class)->name('front.realestate');
+//Рекламні оголошення   
+Route::get('/advert', Advert::class)->name('front.advert');
 //Новини
 Route::get('/news', News::class)->name('front.news');
 //Пошук
@@ -122,6 +143,8 @@ Route::get('/search', Search::class)->name('front.search');
 Route::get('/departments/{department:slug}', Department::class)->name('front.department');
 //Нерухоме майно
 Route::get('/real-estate/{estate:slug}', RealEstateShow::class)->name('front.realestate.show');
+//Рекламні оголошення
+Route::get('/advert/{advert:slug}', AdvertShow::class)->name('front.advert.show');
 //Новина
 Route::get('/news/{post:slug}', Post::class)->name('front.post');
 //Проєкт
@@ -130,5 +153,3 @@ Route::get('/projects/{project:slug}', Project::class)->name('front.project');
 Route::get('{category:slug}', Category::class)->name('front.category');
 //Категорія
 Route::get('{parent:slug}/{category:slug}', SubCategory::class)->name('front.subcategory');
-
-

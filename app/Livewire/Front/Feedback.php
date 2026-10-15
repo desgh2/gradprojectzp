@@ -6,6 +6,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Livewire\WithFileUploads;
 use App\Models\Feedback as FeedbackModel;
 use Livewire\Component;
+use Mail;
 
 class Feedback extends Component
 {
@@ -21,8 +22,8 @@ class Feedback extends Component
 
     public function send()
     {
-        ///Валідація
-        $validated = $this->validate([
+        //Валідація
+       $validated = $this->validate([
             'name' => 'required|min:3',
             'text' => 'required|min:3',
             'email' => 'required|min:3|email',
@@ -50,6 +51,13 @@ class Feedback extends Component
         $this->files_count++; //обнулити кількість файлів
         $this->reset(['name', 'phone', 'email', 'text']); //скинути на дефолт
         $this->show_message = true; //показати повідомлення
+
+        Mail::send('emails.mail', ['feed' => $feedback], function ($message) {
+            $message->to('gradproj@zp.gov.ua', 'КП Градпроект')
+                ->subject('Нове повідомлення з форми зворотнього зв’язку');
+                $message->from('gradproekt.zp.ua@gmail.com', 'Форма зворотнього зв’язку');
+        });
+
     }
 
     public function render()

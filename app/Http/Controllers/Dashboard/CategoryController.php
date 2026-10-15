@@ -15,9 +15,32 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $query = Category::query();
+        $query->with('user', 'category');
+        $query->when(request('search'), function ($q) {
+            $q->where('name', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('id', 'LIKE', '%' . request('search') . '%');
+        });
+
+        $query->when((request('cats') === 'cat'), function ($d) {
+            $d->where('parent', NULL);
+        });
+
+        $query->when((request('cats') === 'parent'), function ($p) {
+            $p->whereNotNull('parent');
+        });
+
+
+        $rows = $query->latest();
+        $rows = $query->paginate(10);
+        $links = $rows->appends(['search' => request('search'), 'cats' => request('cats')])->links();
+
         return view('dashboard.category.index', [
-            'categories' => Category::with('user', 'category')->paginate(10),
+            'categories' => $rows,
         ]);
+        /* return view('dashboard.category.index', [
+            'categories' => Category::with('user', 'category')->paginate(10),
+        ]); */
     }
 
     /**

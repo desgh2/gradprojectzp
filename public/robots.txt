@@ -1,2 +1,6 @@
 User-agent: *
+
+Disallow: /search
 Disallow:
+
+Sitemap: https://gradproj.zp.ua/sitemap.xml

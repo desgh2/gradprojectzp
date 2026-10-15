@@ -11,7 +11,7 @@ class RealEstate extends Model
 
     protected $table = 'real_estate';
 
-    protected $fillable = ['title', 'description', 'name', 'heading', 'slug', 'district_id', 'text', 'poster', 'gallery', 'status', 'author'];
+    protected $fillable = ['title', 'description', 'name', 'heading', 'slug', 'district_id', 'place_id', 'lat', 'lon', 'text', 'poster', 'gallery', 'pasport', 'status', 'author'];
 
     //Статус
     const STATUS_ACTIVE = 'active';
@@ -24,7 +24,7 @@ class RealEstate extends Model
         ['id' => 3, 'name' => 'Олександрівський район'],
         ['id' => 4, 'name' => 'Вознесенівський район'],
         ['id' => 5, 'name' => 'Комунарський район'],
-        ['id' => 6, 'name' => 'Шевченкивський район'],
+        ['id' => 6, 'name' => 'Шевченківський район'],
         ['id' => 7, 'name' => 'Заводський район'],
     ];
 
@@ -56,5 +56,11 @@ class RealEstate extends Model
     public function district()
     {
         return array_search($this->district_id, array_column(self::$districts, 'id', 'name'));
+    }
+
+	//автор запису
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'author', 'id');
     }
 }

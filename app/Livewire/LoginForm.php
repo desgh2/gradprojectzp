@@ -21,6 +21,7 @@ class LoginForm extends Form
     #[Validate('boolean')]
     public bool $remember = false;
 
+
     /**
      * Attempt to authenticate the request's credentials.
      *

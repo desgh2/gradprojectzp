@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="category-main col-12 col-lg-8 offset-lg-1">
-                @if ($category->id == 13)
+                @if ($category->id == 10)
                 @livewire('front.persons')
                 @else
                 <h1 class="category-title">{{ $category->heading }}</h1>

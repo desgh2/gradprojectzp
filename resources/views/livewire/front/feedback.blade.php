@@ -21,21 +21,21 @@
                     <div class="col-lg-8">
                         <div class="form-floating mb-5">
                             <input type="text" class="form-control @error('name') is-invalid @enderror input-field"
-                                wire:model="name" id="name" placeholder="Ім`я">
+                                wire:model.live="name" id="name" placeholder="Ім`я">
                             <label for="name">Ім`я <span class="text-warning">*</span></label>
                         </div>
                         <div class="form-floating mb-5">
-                            <input type="text" class="form-control input-field" wire:model="phone" id="phone"
+                            <input type="text" class="form-control input-field" wire:model.live="phone" id="phone"
                                 placeholder="Телефон">
                             <label for="phone">Телефон</label>
                         </div>
                         <div class="form-floating mb-5">
                             <input type="email" class="form-control @error('email') is-invalid @enderror input-field"
-                                wire:model="email" id="email" placeholder="E-mail">
+                                wire:model.live="email" id="email" placeholder="E-mail">
                             <label for="email" class="form-label">E-mail <span class="text-warning">*</span></label>
                         </div>
                         <div class="form-floating mb-5">
-                            <textarea class="form-control @error('text') is-invalid @enderror text-field" wire:model="text" id="text"
+                            <textarea class="form-control @error('text') is-invalid @enderror text-field" wire:model.live="text" id="text"
                                 placeholder="Текст повідомлення"></textarea>
                             <label for="text" class="form-label">Текст повідомлення <span
                                     class="text-warning">*</span></label>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="uploads">
-                            <input type="file" id="uploadFile{{ $files_count }}" class="input-file" wire:model="files" multiple>
+                            <input type="file" id="uploadFile{{ $files_count }}" class="input-file" wire:model.live="files" multiple>
                         </div>
                     </div>
                     <div class="col-12 mb-5">

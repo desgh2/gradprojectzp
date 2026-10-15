@@ -6,15 +6,43 @@
             <h1 class="app-page-title">@yield('title')</h1>
         </div>
         <div class="col-auto">
-            <a class="btn app-btn-secondary" href="{{ route('category.create') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-                </svg>
-                Додати категорію
-            </a>
+            <div class="page-utilities">
+                <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                    <div class="col-auto">
+                        <form action="{{ route('category.index') }}" class="docs-search-form row gx-1 align-items-center">
+                            <div class="col-auto">
+                                <select name="cats" class="form-select w-auto" onchange="this.form.submit()">
+                                    <option value="">Вибрати</option>
+                                    <option value="cat" @selected('cat'==request('cats'))>Категорії</option>
+                                    <option value="parent" @selected('parent'==request('cats'))>Підкатегорії</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" id="search" name="search" class="form-control"
+                                    placeholder="Пошук" value="{{ request('search') }}">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn app-btn-secondary">Знайти</button>
+                            </div>
+                        </form>
+                    </div><!--//col-->
+
+                    <div class="col-auto">
+                        <a class="btn app-btn-secondary" href="{{ route('category.create') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                            </svg>
+                            Додати категорію
+                        </a>
+                    </div><!--//col-auto-->
+                </div><!--//row-->
+            </div>
+
         </div><!--//col-auto-->
+
+
     </div>
     <div class="row">
         <div class="col-12">

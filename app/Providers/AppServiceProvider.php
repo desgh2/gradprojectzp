@@ -23,14 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrap();
+        // Paginator::useBootstrap();
+        Paginator::useBootstrapFive();
 
         $this->app->bind('setting', function () {
             $setting = \App\Models\Setting::first();
             if (!$setting) {
                 $setting = new Setting();
                 $setting->work_time = 'ПН-ПТ: 8:00-17:00';
-                $setting->address = 'вул.Зелінського, 3, м.Запоріжжя, 69126';
+                $setting->address = 'проспект Металургів, 11, м.Запоріжжя';
             }
             return $setting;
         });

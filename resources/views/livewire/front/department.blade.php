@@ -1,11 +1,15 @@
 <div>
     @include('breadcrumbs', [
-        'breadcrumbs' => [
-            'departments' => 'Відділи',
-            $department->slug => $department->name,
-        ],
+    'breadcrumbs' => [
+    'departments' => 'Відділи',
+    $department->slug => $department->name,
+    ],
     ])
     <div class="container">
+        @if($department->id == 8)
+        {!! $department->text !!}
+    
+        @else
         <h1 class="department-title">{{ $department->name }}</h1>
         <div class="row">
             <div class="department-person col-md-12 col-lg-3">
@@ -46,5 +50,6 @@
             </div>
             @endif
         </div>
+        @endif
     </div>
 </div>

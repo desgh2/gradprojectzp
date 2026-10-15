@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('heading', 300)->nullable();
             $table->string('slug', 300)->nullable();
             $table->string('name', 300)->nullable();
-            $table->integer('district_id', 300)->nullable();
+            $table->integer('district_id')->nullable();
             $table->string('poster', 300)->nullable();
             $table->text('gallery')->nullable();
             $table->text('text')->nullable();

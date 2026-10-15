@@ -19,7 +19,7 @@ class Persons extends Component
         SEOTools::setTitle($this->title);
         SEOTools::setDescription($this->description);
         return view('livewire.front.persons', [
-            'persons' => Person::isActive()->get(),
+            'persons' => Person::isActive()->orderBy('in_order', 'asc')->get(),
         ])
             ->extends('layouts.app')
             ->section('content');

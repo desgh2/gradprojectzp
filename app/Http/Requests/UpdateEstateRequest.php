@@ -26,10 +26,10 @@ class UpdateEstateRequest extends FormRequest
         return [
             'district_id'   => ['required'],
             'name'          => ['required', 'min:2', 'max:300'],
-            'title'         => ['required', 'min:2', 'max:300'],
+            //'title'         => ['required', 'min:2', 'max:300'],
             'slug'          => ['required', 'min:2', 'max:300'],
-            'heading'       => ['required', 'min:2', 'max:300'],
-            'description'   => ['required', 'min:2', 'max:300'],
+            //'heading'       => ['required', 'min:2', 'max:300'],
+            //'description'   => ['required', 'min:2', 'max:300'],
         ];
     }
 

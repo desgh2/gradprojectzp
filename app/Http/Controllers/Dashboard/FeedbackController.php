@@ -14,7 +14,7 @@ class FeedbackController extends Controller
     public function index()
     {
         return view('dashboard.feedback.index', [
-            'rows' => Feedback::paginate(10),
+            'rows' => Feedback::latest()->paginate(10),
             'statuses' => Feedback::$statuses,
         ]);
     }
@@ -92,6 +92,4 @@ class FeedbackController extends Controller
         ]);
         return back();
     }
-
-
 }
